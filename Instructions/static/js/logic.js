@@ -56,7 +56,7 @@ d3.json(quakeURL, function (json) {
       // Changing to circles 
       pointToLayer: function(feature, latlng) {
         return new L.CircleMarker(latlng, {
-          radius: (feature.properties.mag)*5,
+          radius: (feature.properties.mag)*3,
           color: circleFillColor(feature.properties.mag)
           //fillOpacity: 1
         });
@@ -69,23 +69,23 @@ d3.json(quakeURL, function (json) {
 
 
        //add legend
-       var legend = L.control({position: 'bottomright'});
+       var legend = L.control({position: "bottomright" });
 
-       legend.onAdd = function (map) {
+       legend.onAdd = function () {
        
-           var div = L.DomUtil.create('div', 'info legend'),
-               magnitude = [1, 2, 3, 4, 5, 6, 7, 8, 9],
-               labels = [];
+           var div = L.DomUtil.create('div', 'info legend');
+               var Power = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+               var labels = [];
        
            // loop through our density intervals and generate a label with a colored square for each interval
-           for (var i = 0; i < magnitude.length; i++) {
+           for (var i = 0; i < Power.length; i++) {
                div.innerHTML +=
-                   '<i style="background:' + circleFillColor(magnitude[i] + 1) + '"></i> ' +
-                   magnitude[i] + (magnitude[i + 1] ? '&ndash;' + magnitude[i + 1] + '<br>' : '+');
+                   '<i style="background: ' + circleFillColor(Power[i] + 1) + '"></i> ' +
+                   Power[i] + (Power[i + 1] ? '&ndash;' + Power[i + 1] + '<br>' : '+');
            }
        
            return div;
        };
        
-       legend.addTo(map);
+       legend.addTo(myMap);
 });
