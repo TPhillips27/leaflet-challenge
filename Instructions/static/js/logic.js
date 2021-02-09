@@ -74,14 +74,14 @@ d3.json(quakeURL, function (json) {
        legend.onAdd = function () {
        
            var div = L.DomUtil.create('div', 'info legend');
-               var Power = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-               var labels = [];
+               var Magnitude = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+               var labels = ["<b>Magnitude</b>"];
        
            // loop through our density intervals and generate a label with a colored square for each interval
-           for (var i = 0; i < Power.length; i++) {
+           for (var i = 0; i < Magnitude.length; i++) {
                div.innerHTML +=
-                   '<i style="background: ' + circleFillColor(Power[i] + 1) + '"></i> ' +
-                   Power[i] + (Power[i + 1] ? '&ndash;' + Power[i + 1] + '<br>' : '+');
+                   '<i style="background: ' + circleFillColor(Magnitude[i] + 1) + '"></i> ' +
+                   Magnitude[i] + (Magnitude[i + 1] ? '&ndash;' + Magnitude[i + 1] + '<br>' : '+');
            }
        
            return div;
